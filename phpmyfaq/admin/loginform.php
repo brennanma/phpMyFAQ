@@ -24,7 +24,7 @@
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <header>
-                            <h3 class="panel-title">phpMyFAQ Login</h3>
+                            <h3 class="panel-title">Corporate Login Required</h3>
                         </header>
                     </div>
                     <div class="panel-body">
@@ -66,29 +66,10 @@ if ((isset($_SERVER['HTTPS']) && strtoupper($_SERVER['HTTPS']) === 'ON') || !$fa
                                            required>
                                 </div>
 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" id="faqrememberme" name="faqrememberme" value="rememberMe">
-                                        <?php echo $PMF_LANG['rememberMe'] ?>
-                                    </label>
-                                </div>
-
                                 <div class="form-group">
                                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                                         <?php echo $PMF_LANG['msgLoginUser'] ?>
                                     </button>
-                                </div>
-
-                                <div class="form-group">
-                                    <p class="pull-right">
-                                        <a href="../?action=password">
-                                            <?php echo $PMF_LANG['lostPassword'] ?>
-                                        </a>
-                                        <br>
-                                        <a href="../?action=register">
-                                            <?php echo $PMF_LANG['msgRegistration'] ?>
-                                        </a>
-                                    </p>
                                 </div>
                             </fieldset>
 <?php

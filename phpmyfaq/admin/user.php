@@ -430,28 +430,47 @@ if ($user->perm->checkRight($user->getUserId(), 'edituser') ||
                 $('#user_list_autocomplete').val(data.login);
                 $('#user_list_select').val(data.user_id);
                 $('#modal_user_id').val(data.user_id);
-                // Append input fields
-                $('#user_data_table').append(
-                    '<div class="form-group">' +
-                        '<label class="col-lg-3 control-label"><?php echo $PMF_LANG['ad_user_realname'] ?></label>' +
-                        '<div class="col-lg-9">' +
-                            '<input type="text" name="display_name" value="' + data.display_name + '" class="form-control" required>' +
-                        '</div>' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                        '<label class="col-lg-3 control-label"><?php echo $PMF_LANG['ad_entry_email'] ?></label>' +
-                        '<div class="col-lg-9">' +
-                            '<input type="email" name="email" value="' + data.email + '" class="form-control" required>' +
-                        '</div>' +
-                    '</div>' +
-                    '<div class="form-group">' +
-                        '<div class="col-lg-9 col-lg-offset-3">' +
-                            '<a class="btn btn-danger pmf-admin-override-password" data-toggle="modal" ' +
-                            '   href="#pmf-modal-user-password-override">Override user\'s password</a>' +
-                        '</div>' +
-                    '</div>' +
-                    '<input type="hidden" name="last_modified" value="' + data.last_modified + '">'
-                );
+
+                if (data.authLocal) {
+                    // Append input fields
+                    $('#user_data_table').append(
+                      '<div class="form-group">' +
+                      '<label class="col-lg-3 control-label"><?php echo $PMF_LANG['ad_user_realname'] ?></label>' +
+                      '<div class="col-lg-9">' +
+                      '<input type="text" name="display_name" value="' + data.display_name + '" class="form-control" required>' +
+                      '</div>' +
+                      '</div>' +
+                      '<div class="form-group">' +
+                      '<label class="col-lg-3 control-label"><?php echo $PMF_LANG['ad_entry_email'] ?></label>' +
+                      '<div class="col-lg-9">' +
+                      '<input type="email" name="email" value="' + data.email + '" class="form-control" required>' +
+                      '</div>' +
+                      '</div>' +
+                      '<div class="form-group">' +
+                      '<div class="col-lg-9 col-lg-offset-3">' +
+                      '<a class="btn btn-danger pmf-admin-override-password" data-toggle="modal" ' +
+                      '   href="#pmf-modal-user-password-override">Override user\'s password</a>' +
+                      '</div>' +
+                      '</div>' +
+                      '<input type="hidden" name="last_modified" value="' + data.last_modified + '">'
+                    );
+                } else {
+                    $('#user_data_table').append(
+                      '<div class="form-group">' +
+                      '<label class="col-lg-3 control-label"><?php echo $PMF_LANG['ad_user_realname'] ?></label>' +
+                      '<div class="col-lg-9">' +
+                      '<input type="text" name="display_name" value="' + data.display_name + '" class="form-control" required readonly="readonly">' +
+                      '</div>' +
+                      '</div>' +
+                      '<div class="form-group">' +
+                      '<label class="col-lg-3 control-label"><?php echo $PMF_LANG['ad_entry_email'] ?></label>' +
+                      '<div class="col-lg-9">' +
+                      '<input type="email" name="email" value="' + data.email + '" class="form-control" required readonly="readonly">' +
+                      '</div>' +
+                      '</div>' +
+                      '<input type="hidden" name="last_modified" value="' + data.last_modified + '">'
+                    );
+                }
             });
         }
         /* ]]> */

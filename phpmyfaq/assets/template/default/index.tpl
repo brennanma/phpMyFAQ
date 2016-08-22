@@ -50,7 +50,7 @@
     <div class="pmf-wrapper pmf-masthead">
         <div class="container">
             <a id="logo" title="{header}" href="{faqHome}">
-                <img src="assets/img/phpmyfaq-logo.png" alt="phpMyFAQ">
+                <img src="assets/img/applauseLogoWhiteNoTag.svg" alt="phpMyFAQ">
             </a>
 
             <div id="mobile-nav-toggle" class="pull-right">
@@ -64,9 +64,6 @@
                     <ul class="nav nav-pills navbar-nav">
                         <li class="{activeSearch}">{msgSearch}</li>
                         <li class="{activeAllCategories}">{allCategories}</li>
-                        <li class="{activeAddContent}">{msgAddContent}</li>
-                        <li class="{activeAddQuestion}">{msgQuestion}</li>
-                        <li class="{activeOpenQuestions}">{msgOpenQuestions}</li>
 
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -75,11 +72,9 @@
                             </a>
                             <ul class="dropdown-menu">
                                 [notLoggedIn]
-                                <li>{msgRegisterUser}</li>
                                 <li>{msgLoginUser}</li>
                                 [/notLoggedIn]
                                 [userloggedIn]
-                                <li>{msgUserControlDropDown}</li>
                                 <li>{msgUserControl}</li>
                                 <li>{msgLogoutUser}</li>
                                 [/userloggedIn]

@@ -53,9 +53,10 @@ switch ($action) {
         if ($faqConfig->get('security.permLevel') != 'basic') {
             $secLevelEntries .= $adminHelper->addMenuEntry('addgroup+editgroup+delgroup', 'group', 'ad_menu_group_administration', $action);
         }
-        $secLevelEntries .= $adminHelper->addMenuEntry('passwd', 'passwd', 'ad_menu_passwd', $action);
-        $dashboardPage = false;
-        $userPage = true;
+        if ($user->isAuthLocal()) {
+            $adminMenuBuilder->addMenuEntry('passwd', 'passwd', 'ad_menu_passwd', $action);
+        }
+        $templateVars['activePage'] = 'user';
         break;
     case 'content':
     case 'category':

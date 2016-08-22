@@ -49,7 +49,7 @@
     <div class="pmf-wrapper pmf-masthead">
         <div class="container">
             <a id="logo" title="{header}" href="{faqHome}">
-                <img src="assets/img/phpmyfaq-logo.png" alt="phpMyFAQ">
+                <img src="assets/img/applauseLogoWhiteNoTag.svg" alt="phpMyFAQ">
             </a>
 
             <div id="mobile-nav-toggle" class="pull-right">

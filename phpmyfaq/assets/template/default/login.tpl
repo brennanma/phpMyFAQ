@@ -30,27 +30,12 @@
                                                class="form-control input-lg" placeholder="{password}" required>
                                     </div>
 
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" id="faqrememberme" name="faqrememberme"
-                                                   value="rememberMe">
-                                            {rememberMe}
-                                        </label>
-                                    </div>
-
                                     <div class="form-group">
                                         <button class="btn btn-lg btn-primary btn-block" type="submit">
                                             {loginHeader}
                                         </button>
                                     </div>
 
-                                    <div class="form-group">
-                                        <p class="pull-right">
-                                            {sendPassword}
-                                            <br>
-                                            {registerUser}
-                                        </p>
-                                    </div>
                                 </fieldset>
                             </form>
                         </div>

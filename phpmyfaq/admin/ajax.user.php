@@ -61,6 +61,7 @@ if ($user->perm->checkRight($user->getUserId(), 'adduser') ||
             $userdata = $user->userdata->get('*');
             $userdata['status'] = $user->getStatus();
             $userdata['login'] = $user->getLogin();
+            $userdata['authLocal'] = $user->isAuthLocal();
             echo json_encode($userdata);
             break;
 

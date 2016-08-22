@@ -418,13 +418,6 @@ if ($faqConfig->get('security.enableLoginOnly')) {
         $indexSet = 'index.tpl';
     } else {
         switch ($action) {
-            case 'register':
-            case 'thankyou':
-                $indexSet = 'indexNewUser.tpl';
-                break;
-            case 'password':
-                $indexSet = 'indexPassword.tpl';
-                break;
             default:
                 $indexSet = 'indexLogin.tpl';
                 break;

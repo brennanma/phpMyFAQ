@@ -49,7 +49,7 @@
     <div class="pmf-wrapper pmf-masthead">
         <div class="container">
             <a id="logo" title="{header}" href="{faqHome}">
-                <img src="assets/img/phpmyfaq-logo.png" alt="phpMyFAQ">
+                <img src="assets/img/applauseLogoWhiteNoTag.svg" alt="phpMyFAQ">
             </a>
         </div>
     </div>
@@ -84,7 +84,7 @@
                                 <div class="login-panel panel panel-default">
                                     <div class="panel-heading">
                                         <header>
-                                            <h3 class="panel-title text-center">phpMyFAQ Login</h3>
+                                            <h3 class="panel-title">Corporate Login Required</h3>
                                         </header>
                                     </div>
                                     <div class="panel-body">
@@ -103,27 +103,12 @@
                                                            required>
                                                 </div>
 
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" id="faqrememberme" name="faqrememberme"
-                                                               value="rememberMe">
-                                                        {rememberMe}
-                                                    </label>
-                                                </div>
-
                                                 <div class="form-group">
                                                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                                                         {loginHeader}
                                                     </button>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <p class="pull-right">
-                                                        {sendPassword}
-                                                        <br>
-                                                        {registerUser}
-                                                    </p>
-                                                </div>
                                             </fieldset>
                                         </form>
                                     </div>

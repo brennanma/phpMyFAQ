@@ -710,7 +710,7 @@ class PMF_Category
                     $level
                 );
             }
-
+            /*
             if (0 === $number[$parent] && 0 === $level) {
                 $numFaqs = '';
             } else {
@@ -724,7 +724,7 @@ class PMF_Category
                     );
                 }
                 $numFaqs .= ')</span>';
-            }
+            }*/
 
             $url = sprintf(
                 '%s?%saction=show&amp;cat=%d',

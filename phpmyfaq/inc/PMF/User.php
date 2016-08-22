@@ -168,6 +168,13 @@ class PMF_User
     );
 
     /**
+     * the auth source for the user (local, ldap, etc.)
+     *
+     * @var string
+     */
+    private $authSource;
+
+    /**
      * Configuration.
      *
      * @var PMF_Configuration
@@ -251,6 +258,15 @@ class PMF_User
     }
 
     /**
+     * Check if the user's auth is local
+     *
+     * @return boolean
+     */
+    public function isAuthLocal() {
+        return (!strcmp($this->authSource,"local"));
+    }
+
+    /**
      * Loads basic user information from the database selecting the user with
      * specified user-ID.
      *
@@ -265,7 +281,8 @@ class PMF_User
             SELECT
                 user_id,
                 login,
-                account_status
+                account_status,
+                auth_source
             FROM
                 %sfaquser
             WHERE
@@ -280,10 +297,11 @@ class PMF_User
 
             return false;
         }
-        $user = $this->config->getDb()->fetchArray($res);
-        $this->userId = (int) $user['user_id'];
-        $this->login = (string) $user['login'];
-        $this->status = (string) $user['account_status'];
+        $user          = $this->config->getDb()->fetchArray($res);
+        $this->userId = (int)    $user['user_id'];
+        $this->login   = (string)$user['login'];
+        $this->status  = (string)$user['account_status'];
+        $this->authSource = (string)$user['auth_source'];
 
         // get encrypted password
         // @todo: Add a getEncPassword method to the Auth* classes for the (local and remote) Auth Sources.
@@ -330,7 +348,8 @@ class PMF_User
             SELECT
                 user_id,
                 login,
-                account_status
+                account_status,
+                auth_source
             FROM
                 %sfaquser
             WHERE
@@ -348,9 +367,10 @@ class PMF_User
             return false;
         }
         $user = $this->config->getDb()->fetchArray($res);
-        $this->userId = (int) $user['user_id'];
-        $this->login = (string) $user['login'];
-        $this->status = (string) $user['account_status'];
+        $this->userId  = (int)    $user['user_id'];
+        $this->login   = (string) $user['login'];
+        $this->status  = (string) $user['account_status'];
+        $this->authSource = (string)$user['auth_source'];
 
         // get user-data
         if (!$this->userdata instanceof PMF_User_UserData) {
@@ -375,7 +395,8 @@ class PMF_User
             SELECT
                 user_id,
                 login,
-                account_status
+                account_status,
+                auth_source
             FROM
                 %sfaquser
             WHERE
@@ -397,9 +418,10 @@ class PMF_User
             return false;
         }
 
-        $this->userId = (int) $user['user_id'];
-        $this->login = (string) $user['login'];
-        $this->status = (string) $user['account_status'];
+        $this->userId = (int)     $user['user_id'];
+        $this->login   = (string) $user['login'];
+        $this->status  = (string) $user['account_status'];
+        $this->authSource = (string)$user['auth_source'];
 
         // get user-data
         if (!$this->userdata instanceof PMF_User_UserData) {
@@ -525,18 +547,33 @@ class PMF_User
         }
 
         // create user entry
-        $insert = sprintf("
-            INSERT INTO
-                %sfaquser
-            (user_id, login, session_timestamp, member_since)
+        if ($pass == '') {
+            $insert = sprintf("
+              INSERT INTO
+                  %sfaquser
+              (user_id, login, session_timestamp, auth_source, member_since)
                 VALUES
-            (%d, '%s', %d, '%s')",
-            PMF_Db::getTablePrefix(),
-            $this->getUserId(),
-            $this->config->getDb()->escape($login),
-            $_SERVER['REQUEST_TIME'],
-            date('YmdHis', $_SERVER['REQUEST_TIME'])
-        );
+              (%d, '%s', %d, 'ldap', '%s')",
+              PMF_Db::getTablePrefix(),
+              $this->getUserId(),
+              $this->config->getDb()->escape($login),
+              $_SERVER['REQUEST_TIME'],
+              date('YmdHis', $_SERVER['REQUEST_TIME'])
+            );
+        } else {
+            $insert = sprintf("
+              INSERT INTO
+                  %sfaquser
+              (user_id, login, session_timestamp, member_since)
+                VALUES
+              (%d, '%s', %d, '%s')",
+              PMF_Db::getTablePrefix(),
+              $this->getUserId(),
+              $this->config->getDb()->escape($login),
+              $_SERVER['REQUEST_TIME'],
+              date('YmdHis', $_SERVER['REQUEST_TIME'])
+            );
+        }
 
         $this->config->getDb()->query($insert);
         if (!$this->userdata instanceof PMF_User_UserData) {
@@ -659,6 +696,11 @@ class PMF_User
      */
     public function changePassword($pass = '')
     {
+        //Don't allow password change if they are not local
+        if (strcmp($this->authSource,'local')) {
+            return false;
+        }
+
         foreach ($this->authContainer as $auth) {
             if (!$this->checkAuth($auth)) {
                 return false;

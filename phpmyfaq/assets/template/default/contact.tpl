@@ -12,7 +12,7 @@
                     <label class="col-sm-3 control-label" for="name">{msgNewContentName}</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="name" id="name" value="{defaultContentName}"
-                               required>
+                               required readonly="readonly">
                     </div>
                 </div>
 
@@ -20,7 +20,7 @@
                     <label class="col-sm-3 control-label" for="email">{msgNewContentMail}</label>
                     <div class="col-sm-9">
                         <input type="email" class="form-control" name="email" id="email" value="{defaultContentMail}"
-                               required>
+                               required readonly="readonly">
                     </div>
                 </div>
 
@@ -50,7 +50,6 @@
                 <small>
                     Template/CSS by <a href="http://www.rinne.info">Thorsten Rinne</a><br>
                     Original phpMyFAQ logo by <a href="http://www.lieven.be/">Lieven Op De Beeck</a><br>
-                    <a href="https://geo.itunes.apple.com/de/app/phpmyfaq/id977896957?mt=8" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;margin:10px;"></a><br>
                     &copy; 2001 - 2016 by <a href="http://www.phpmyfaq.de/">phpMyFAQ Team</a> under the <a href="http://www.mozilla.org/MPL/2.0/">Mozilla Public License</a>.
                     All rights reserved.<br>
                 </small>
