@@ -245,12 +245,14 @@ switch ($action) {
                     <b class="fa fa-caret-down"></b>
                 </a>
                 <ul class="dropdown-menu">
+                    <?php if ($user->isAuthLocal()): ?>
                     <li>
                         <a href="index.php?action=passwd">
                             <i aria-hidden="true" class="fa fa-lock"></i> <?php echo $PMF_LANG['ad_menu_passwd'] ?>
                         </a>
                     </li>
                     <li class="divider"></li>
+                    <?php endif; ?>
                     <li>
                         <a href="index.php?action=logout">
                             <i aria-hidden="true" class="fa fa-power-off"></i> <?php echo $PMF_LANG['admin_mainmenu_logout']; ?>
