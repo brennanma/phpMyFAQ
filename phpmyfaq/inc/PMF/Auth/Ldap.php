@@ -147,6 +147,15 @@ class PMF_Auth_Ldap extends PMF_Auth implements PMF_Auth_Driver
             )
         );
 
+        $groups = $this->ldap->getGroups($login);
+        foreach ($groups as $group) {
+            if ($groupId = $user->perm->getGroupId($group)) {
+                if (!$user->perm->isGroupMember($user->getUserId(),$groupId)) {
+                    $user->perm->addToGroup($user->getUserId(),$groupId);
+                }
+            }
+        }
+
         return $result;
     }
 

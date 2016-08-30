@@ -217,6 +217,31 @@ class PMF_Ldap
     }
 
     /**
+     * Returns an array of names of LDAP groups that user is a member of
+     *
+     * @param string $username Username
+     *
+     * @return string[]|NULL Array of group names
+     */
+    public function getGroups($username)
+    {
+        $groups = $this->getLdapData($username, 'memberOf', false);
+
+        $groupList = array();
+        foreach ($groups as $group) {
+            $groupData = ldap_explode_dn($group,1);
+            $groupList[] = $groupData[0];
+        }
+
+        if (count($groupList) > 0) {
+            return $groupList;
+        }
+
+        return NULL;
+
+    }
+
+    /**
      * Returns the LDAP error message of the last LDAP command.
      *
      * @param resource $ds LDAP resource
@@ -237,10 +262,11 @@ class PMF_Ldap
      *
      * @param string $username Username
      * @param string $data     MapKey
+     * @param boolean $firstOnly Only return first element
      *
      * @return string|false
      */
-    private function getLdapData($username, $data)
+    private function getLdapData($username, $data, $firstOnly=true)
     {
         if (!is_resource($this->ds)) {
             $this->error = 'The LDAP connection handler is not a valid resource.';
@@ -298,7 +324,11 @@ class PMF_Ldap
 
         $values = ldap_get_values($this->ds, $entryId, $fields[0]);
 
-        return $values[0];
+        if ($firstOnly) {
+            return $values[0];
+        }
+
+        return $values;
     }
 
     /**

@@ -40,7 +40,7 @@ $PMF_LDAP['ldap_options'] = [
 // Option for adding a check on LDAP groups
 // Default: false
 $PMF_LDAP['ldap_use_memberOf'] = false;
-$PMF_LDAP['ldap_mapping']['memberOf'] = '';
+$PMF_LDAP['ldap_mapping']['memberOf'] = 'memberOf';
 
 // Option for binding to LDAP directory using SASL
 // Default: false
