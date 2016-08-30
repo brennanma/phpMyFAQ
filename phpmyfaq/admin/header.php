@@ -56,7 +56,8 @@ switch ($action) {
         if ($user->isAuthLocal()) {
             $adminMenuBuilder->addMenuEntry('passwd', 'passwd', 'ad_menu_passwd', $action);
         }
-        $templateVars['activePage'] = 'user';
+        $dashboardPage = false;
+        $userPage = true;
         break;
     case 'content':
     case 'category':
