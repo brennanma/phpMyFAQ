@@ -604,7 +604,8 @@ $tplNavigation['activeOpenQuestions'] = ('open' == $action) ? 'active' : '';
 if (isset($auth)) {
 
     $userRights = $user->perm->getAllUserRights($user->getUserId());
-    $minRights = ['37', '39', '40', '41'];
+//    $minRights = ['37', '39', '40', '41'];
+    $minRights = ['37'];
 
     if (count(array_intersect($userRights, $minRights)) === count($minRights)) {
         $adminSection = sprintf(
